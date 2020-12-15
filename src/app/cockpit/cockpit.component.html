@@ -9,11 +9,16 @@
       <input type="text" class="form-control" #serverNameInput>
 
       <label>Server Content</label>
-      <input type="text" class="form-control" [(ngModel)]="newServerContent">
+      <!-- The following uses two-way data binding -->
+      <!-- <input type="text" class="form-control" [(ngModel)]="newServerContent"> -->
+
+      <!-- Alternative: using ViewChild to access template data from TS directly-->
+      <input type="text" class="form-control" #serverInputContent>
       <br>
 
       <!-- pass the local reference, serverNameInput; Note the serverNameInput is only accessible within this template and must be passed 
-      to other events if they are needed in TS -->
+      to other events if they are needed in TS. If direct access from TS is required (and thus need not be triggered by an event) then 
+      use the decorator, @ViewChild, above  -->
       <button
         class="btn btn-primary"
         (click)="onAddServer(serverNameInput)">Add Server</button>
