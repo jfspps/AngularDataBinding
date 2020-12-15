@@ -25,4 +25,12 @@ export class AppComponent {
       content: blueprintData.serverContent
     });
   }
+
+  onDeleteServer(){
+    if (this.serverElements.length > 0){
+      this.serverElements.splice(0, 1);
+    } else {
+      console.log("No servers remaining");
+    }
+  }
 }

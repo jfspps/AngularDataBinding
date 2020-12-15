@@ -16,6 +16,21 @@ In order to practice this kind of component communication Max applies this princ
 
 Later you will see: In all cases which are not direct parent/child constellations (i.e. if we have a different relationship between components, or if routing is involved) we can use a service (see sections 9/10 and all following ones). This approach has no restrictions, we can use it in all imaginable constellations.`
 
+# The component lifecycle
+
+The constructor runs anytime a new object is instantiated. Other method calls (e.g. console.log()) within the constructor would also run if present.
+
+It is generally good practice, though not technically mandatory, to declare each method (except for the constructor) after the `implements` class declaration.
+
++ `ngOnChanges()` runs anytime a bound input property changes. Use `ngOnChanges(changes: SimpleChanges)` to access what changed by using `changes`. 
++ `ngOnInit()` runs immediately after the constructor
++ `ngDoCheck()` runs whenever a change to a template (render) is requested; this runs quite often
++ `ngAfterContentInit()` runs whenever the parent projects data to a component with <ng-content>
++ `ngAfterContentChecked()` runs whenever change detection detects `ngAfterContentInit`
++ `ngAfterViewInit()` runs after a component and its child views have been initialised (rendered)
++ `ngAfterViewChecked()` runs after the view and child views have been checked
++ `ngOnDestroy()` runs once a component is destroyed (any required data to be saved can be executed here before loss)
+
 # MyFirstApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
