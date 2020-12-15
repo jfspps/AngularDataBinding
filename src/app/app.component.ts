@@ -26,6 +26,15 @@ export class AppComponent {
     });
   }
 
+  onChangeHeader(){
+    if (this.serverElements.length > 0){
+      this.serverElements[0].name = "Header changed";
+      console.log("onChangeFirstServerName() called")
+    } else {
+      console.log("No servers remaining");
+    }
+  }
+
   onDeleteServer(){
     if (this.serverElements.length > 0){
       this.serverElements.splice(0, 1);

@@ -6,11 +6,13 @@ import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '
   styleUrls: ['./cockpit.component.css']
 })
 export class CockpitComponent implements OnInit {
-  newServerName = '';
-  newServerContent = '';
+  // newServerName = '';
+  // newServerContent = '';
 
   // use ViewChild decorator; newServerContent is now of type ElementRef (a reference to an element, not the element itself)
-  @ViewChild('serverInputContent', {static: true}) newServerContentChild: ElementRef;
+  // add { static: true } as a second parameter to the decorator if this property is handled in ngOnInit()
+  @ViewChild('serverNameInput') newServerNameChild: ElementRef;
+  @ViewChild('serverInputContent') newServerContentChild: ElementRef;
 
   // required to enable other components to execute their methods when a cockpit method/event has occurred
   // the EventEmitter effectively casts the property as an event
@@ -18,37 +20,33 @@ export class CockpitComponent implements OnInit {
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   
-  constructor() {
-   }
+  constructor() { }
 
   ngOnInit(): void {
-    // use a ViewChild to access template data from TS, in this case, without methods or events (run the console to observe this)
-    // general advice is not to change template values with ViewChild, just access them
-    console.log("ViewChild: " + this.newServerContentChild);
-    console.log("ViewChild value: " + this.newServerContentChild.nativeElement.value);
   }
 
-  onAddServer(newServerName) {
+  onAddServer(serverName, serverContent) {
     // this time we pass the local reference, serverNameInput and its assoc. properties
     // newServerName is actually the entire (in this case) input element properties
-    console.log("Received input: " + newServerName);
-    console.log("Received input value: " + newServerName.value);
+    console.log("Received input: " + serverName);
+    console.log("Received name: " + serverName.value);
+    console.log("Received content: " + serverContent.value)
 
     // when onAddServer() is run/clicked, the serverCreated property is initialised with the supplied property values
     // serverCreated is then sent (emitted) to the parent, app, as an event serverCreated
     // this event, like (click) triggers app's onServerAdded($event) and ultimately updates app's array serverElements
     // (the array contents are then listed in app HTML)
     this.serverCreated.emit({
-      serverName: this.newServerName,
-      serverContent: this.newServerContent
+      serverName: serverName.value,
+      serverContent: serverContent.value
     })
   }
 
   // note how the alias to onAddBlueprint() differentiates the emitter from the local method
-  onAddBlueprint() {
+  onAddBlueprint(serverName, serverContent) {
     this.blueprintCreated.emit({
-      serverName: this.newServerName,
-      serverContent: this.newServerContent
+      serverName: serverName.value,
+      serverContent: serverContent.value
     })
   }
 }
