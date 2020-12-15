@@ -20,19 +20,19 @@ export class ServerElementComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit(): void {
-    console.log("ngOnInit() called.");
+    console.log("Server-element's ngOnInit() called.");
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    console.log("ngOnChanges() called");
+    console.log("Server-element's ngOnChanges() called");
     console.log(changes);
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    console.log("server-element onDestroy() called");
+    console.log("Server-element's onDestroy() called");
   }
 }

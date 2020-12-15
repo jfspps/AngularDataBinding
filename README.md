@@ -31,6 +31,33 @@ It is generally good practice, though not technically mandatory, to declare each
 + `ngAfterViewChecked()` runs after the view and child views have been checked
 + `ngOnDestroy()` runs once a component is destroyed (any required data to be saved can be executed here before loss)
 
+# @Input in Angular
+
+Each `server` and `blueprint` can be stored in any of the components present but generally when changes are made to one components they need to be sync'd with the other components.
+
+The decorator `@Input` allows data from parent `app.component` to pass to child `Server-element`. It is used when the properties of an object are derived from parameters set externally. In this case, `server-element`'s array of servers is first listed and then each, given by `serverElement` is immediately sent to `server-element` as `element`. Each `element` property is prefixed with `@Input` signifying that the property is set externally and therefore requires "input". 
+
+Once app.component is loaded, server-element is then sync'd, overall giving:
+
+```
+app.component `serverElement` of `serverElements[]` in appcomponent.ts <- @Input --->->  Server-element `element`
+```
+
+# @Output in Angular
+
+The decorator `@Output` passes data from the child component `Cockpit` to the parent `app.component`. The class `cockpit` is responsible for handling the input fields for server name and server content. These values are then saved using either pairs:
+
++ Strings `newServerName` and `newServerContent`
++ Element references `serverNameInput` and `serverInputContent`
+
+The user enters the data in the two fields (server name and server content). If the buttons are pressed then either of cockpit's `onAddServer()` or  `onAddBlueprint()` are triggered. This then takes the pair and sends them via an "emitter" method, using the `@Output` decorator, to the parent component. The `@Output` signifies that the data is passed externally to other classes. The parent HTML template passes the parameters to `onServerAdded()` and `onBlueprintAdded()` which are defined in app.component.ts, completing the transfer of data.
+
+Overall:
+
+```
+app.component `serverElement` of `serverElements[]` in appcomponent.ts <-<-- @Output -> cockpit onAddServer() and onAddBlueprint()
+```
+
 # MyFirstApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.

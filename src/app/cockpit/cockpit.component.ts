@@ -9,7 +9,8 @@ export class CockpitComponent implements OnInit {
   // newServerName = '';
   // newServerContent = '';
 
-  // use ViewChild decorator; newServerContent is now of type ElementRef (a reference to an element, not the element itself)
+  // Instead of using String properties (newServerName and newServerContent) use @ViewChild decorator
+  // newServerContent is now of type ElementRef (a reference to an element, not the element itself)
   // add { static: true } as a second parameter to the decorator if this property is handled in ngOnInit()
   @ViewChild('serverNameInput') newServerNameChild: ElementRef;
   @ViewChild('serverInputContent') newServerContentChild: ElementRef;
@@ -18,6 +19,8 @@ export class CockpitComponent implements OnInit {
   // the EventEmitter effectively casts the property as an event
   // the @Output decorator passess data from child to parent (cockpit to app; compare to @Input which passes from parent to child)
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+
+  // here, blueprintCreated is given an external alias, bpCreated
   @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   
   constructor() { }
