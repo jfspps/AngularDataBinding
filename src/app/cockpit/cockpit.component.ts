@@ -20,7 +20,12 @@ export class CockpitComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAddServer() {
+  onAddServer(newServerName) {
+    // this time we pass the local reference, serverNameInput and its assoc. properties
+    // newServerName is actually the entire (in this case) input element properties
+    console.log("Received input: " + newServerName);
+    console.log("Received input value: " + newServerName.value);
+
     // when onAddServer() is run/clicked, the serverCreated property is initialised with the supplied property values
     // serverCreated is then sent (emitted) to the parent, app, as an event serverCreated
     // this event, like (click) triggers app's onServerAdded($event) and ultimately updates app's array serverElements
