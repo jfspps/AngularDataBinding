@@ -22,7 +22,7 @@ export class CockpitComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // use a ViewChild to access template data from TS, in this case, without methods or events
+    // use a ViewChild to access template data from TS, in this case, without methods or events (run the console to observe this)
     // general advice is not to change template values with ViewChild, just access them
     console.log("ViewChild: " + this.newServerContentChild);
     console.log("ViewChild value: " + this.newServerContentChild.nativeElement.value);
