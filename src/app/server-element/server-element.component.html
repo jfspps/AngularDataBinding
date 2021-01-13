@@ -3,7 +3,7 @@
     <div class="panel-body">
         <p>
             <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
-            <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
+            <em *ngIf="element.type === 'blueprint'" style="color: blue">{{ element.content }}</em>
         </p>
 
         <!-- Copying the p tag and its content to the parent app.component.html (in the <app-server-element> element)),
@@ -11,12 +11,17 @@
 
             <ng-content></ng-content>
             
-            to this template achieves the same result. Without the ng-content tag here, the app-server-element would not render copied <p>
-            element (this is default behaviour).
+            to this template achieves the same result. Without the ng-content tag here, the app-server-element would not render 
+            copied <p> element (this is default behaviour).
             
             Here, the <p></p> element is projected into the component (from parent to child) app-server-element.
 
-            The usefulness comes when one wants to pass reusable widgets from the parent to a component, when the underlying HTML is complex
+            The usefulness comes when one wants to pass reusable widgets from the parent to a component, when the underlying HTML 
+            is complex
+
+            Use @ContentChild to enable Server-element to access the projected data (i.e. data built in the app.component and then 
+            passed to server-element). @ViewChild only grants access to data initialised in the corresponding view (template) 
+            i.e. server-element.html
         -->
     </div>
 </div>

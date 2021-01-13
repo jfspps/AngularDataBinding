@@ -4,6 +4,8 @@ This project demonstrates the types of data-binding available in Angular. We pas
 
 The parent appComponent is also linked to `app-cockpit`, which provides a form to build new servers (serverElements). The data is passed to cockpit using @ViewChild decorator, which declares properties as references to HTML elements (ElementRef). The @ViewChild properties are passed to cockpit's onAddServer() and onAddBlueprint() methods both of which in turn emit objects compatible with serverElement to appComponent. This then triggers appComponent's methods to push a new server to the array, and are then listed using `serverElement`.
 
+There is a passing reference to @ContentChild, which enables child components to access projected data from a parent component.
+
 # Component communication
 
 The following was taken directly from the course forum:

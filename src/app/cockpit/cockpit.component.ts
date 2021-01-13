@@ -17,7 +17,7 @@ export class CockpitComponent implements OnInit {
 
   // required to enable other components to execute their methods when a cockpit method/event has occurred
   // the EventEmitter effectively casts the property as an event
-  // the @Output decorator passess data from child to parent (cockpit to app; compare to @Input which passes from parent to child)
+  // the @Output decorator passes data from child to parent (cockpit to app; compare to @Input which passes from parent to child)
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
 
   // here, blueprintCreated is given an external alias, bpCreated
