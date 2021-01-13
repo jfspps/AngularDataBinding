@@ -1,8 +1,14 @@
+# Angular databinding
+
+This project demonstrates the types of data-binding available in Angular. We pass a parent object, `serverElement` from appComponent to `app-server-element`, which then triggers a series of in-built methods demonstrating the lifecycle below. The properties are bound using square-brackets `[property_name]` though in this example not processed further.
+
+The parent appComponent is also linked to `app-cockpit`, which provides a form to build new servers (serverElements). The data is passed to cockpit using @ViewChild decorator, which declares properties as references to HTML elements (ElementRef). The @ViewChild properties are passed to cockpit's onAddServer() and onAddBlueprint() methods both of which in turn emit objects compatible with serverElement to appComponent. This then triggers appComponent's methods to push a new server to the array, and are then listed using `serverElement`.
+
 # Component communication
 
 The following was taken directly from the course forum:
 
-`These are the general rules for component communication:
+These are the general rules for component communication:
 
 You can pass values from a parent to a child component using [property binding] in the parent and @Input() in the child.
 
@@ -12,7 +18,7 @@ This syntax is rather intuitive: @Input() marks inputs into the child (coming fr
 
 A direct parent/child relationship of two components is established by the fact that the selector of the child component is placed somewhere in the template of the parent component. More indirectly, this relationships can be built from chaining between child, parent and grandparents, and beyond.
 
-In all cases which are not direct parent/child constellations (i.e. if we have a different relationship between components, or if routing is involved) we can use a service. This approach has no restrictions.`
+In all cases which are not direct parent/child constellations (i.e. if we have a different relationship between components, or if routing is involved) we can use a service. This approach has no restrictions.
 
 # The component lifecycle
 
@@ -55,8 +61,6 @@ Overall:
 ```
 app.component `serverElement` of `serverElements[]` in appcomponent.ts <-<-- @Output -> cockpit onAddServer() and onAddBlueprint()
 ```
-
-# MyFirstApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
